@@ -30,6 +30,10 @@ function App() {
       localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     }, [bookmarks]);
 
+  useEffect(() => {
+      console.log(productList)
+    }, [productList])
+
   return (
     <ProductContext.Provider value={{ productList, setproductList, bookmarks, setBookmarks }}>
       <Router>

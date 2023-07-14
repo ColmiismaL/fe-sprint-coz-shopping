@@ -47,9 +47,8 @@ export default function Main() {
         }, [productList]);
 
     useEffect(() => {
-            console.log(productList)
             console.log(firstFourProducts)
-            }, [productList, firstFourProducts])
+            }, [firstFourProducts])
 
     useEffect(() => {
             setFirstFourBookmarks(bookmarks.slice(0, 4));
@@ -60,7 +59,7 @@ export default function Main() {
     return (
         <div className="mainin">
             <Header></Header>
-            <div id="maininin">
+            <div className="maininin">
                 <div className="listmain"><span>상품 리스트</span>
                     <ul className="mainul">
                         {firstFourProducts.map((product, index) => {
