@@ -46,6 +46,8 @@
     justify-content: space-around;
 
     padding: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 57px;
 
 }
 
@@ -211,3 +213,5 @@
     bottom: 27px;
     color: white;
 }
+
+

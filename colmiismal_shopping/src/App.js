@@ -19,6 +19,10 @@ function App() {
     return localData ? JSON.parse(localData) : [];
   });
 
+  const [isBookmarkAlert, setIsBookmarkAlert] = useState(false);
+
+
+
   useEffect(() => {
     getProducts()
         .then(data => { 
@@ -35,7 +39,7 @@ function App() {
     }, [productList])
 
   return (
-    <ProductContext.Provider value={{ productList, setproductList, bookmarks, setBookmarks }}>
+    <ProductContext.Provider value={{ productList, setproductList, bookmarks, setBookmarks, isBookmarkAlert, setIsBookmarkAlert }}>
       <Router>
         <div>
           <Routes>

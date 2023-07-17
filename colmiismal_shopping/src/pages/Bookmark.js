@@ -57,7 +57,7 @@ export default function Bookmark() {
     });
 
     const handleImageClick = (product) => {
-        setselectedProduct(product.id);
+        setselectedProduct(product);
         setIsOpen(true);
     };
 
@@ -128,7 +128,7 @@ export default function Bookmark() {
                             {isOpen && (
                                                 <Modal isOpen={isOpen} toggleModal={() => setIsOpen(!isOpen)}>
                                                 <img className="imagemodal" src={selectedProduct.image_url} alt="" />
-                                                <img className="bookmarkmodal" src={isBookmarked(selectedProduct.id) ? "/Bookmarkon.png" : "/bookmarkoff.png"} alt=''></img>
+                                                <img className="bookmarkmodal" src='/bookmarkoff.png' alt=''></img>
                                                 <div className="titlemodal">{selectedProduct.type === 'Category' ? '#' : ''}{selectedProduct.title}</div>
                                                 </Modal>
                             )}

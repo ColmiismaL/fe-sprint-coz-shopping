@@ -5,16 +5,14 @@ import Modal from "../component/Modal";
 
 import "./Main.css"
 
-import { useEffect, useState } from 'react';
-
-import { useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ProductContext from '../context/context';
 
 
 
 export default function Main() {
 
-    const { productList, bookmarks, setBookmarks } = useContext(ProductContext);
+    const { productList, bookmarks, setBookmarks, isBookmarkAlert, setIsBookmarkAlert } = useContext(ProductContext);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -34,6 +32,11 @@ export default function Main() {
         } else {
             const newBookmarks = [...bookmarks, product];
             setBookmarks(newBookmarks);
+            setIsBookmarkAlert(true);
+
+            setTimeout(() => {
+                setIsBookmarkAlert(false);
+            }, 2000); //3ch?
         }
     };
 
@@ -58,7 +61,7 @@ export default function Main() {
 
     return (
         <div className="mainin">
-            <Header></Header>
+            <Header isBookmarkAlert={isBookmarkAlert} setIsBookmarkAlert={setIsBookmarkAlert} ></Header>
             <div className="maininin">
                 <div className="listmain"><span>상품 리스트</span>
                     <ul className="mainul">
