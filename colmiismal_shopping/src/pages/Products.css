@@ -79,5 +79,25 @@
 
     padding-top: 6.5px;
 
+    cursor: pointer;
+
     color: #646464;
+}
+
+.selectedtext {
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 19px;
+display: flex;
+align-items: center;
+
+color: #412DD4;
+
+padding-top: 6.5px;
+
+border-bottom: 3px solid #412DD4;
+
 }

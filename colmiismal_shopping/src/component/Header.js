@@ -1,11 +1,15 @@
 
 import "./Header.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { Link } from 'react-router-dom';
 
-export default function Header() {
+import ProductContext from '../context/context';
 
-    const [dropdownVisible, setDropdownVisible] = useState(false);
+export default function Header( ) {
+
+    const { bookmarkAlerts } = useContext(ProductContext);
+
+    const [dropdownVisible, setDropdownVisible ] = useState(false);
 
     const handleHamburgerClick = () => {
         setDropdownVisible(!dropdownVisible);
@@ -55,6 +59,14 @@ export default function Header() {
                         </div>
                     </div>
                 )}
+                <ul className="alertbox">
+                    {bookmarkAlerts && Array.isArray(bookmarkAlerts) && bookmarkAlerts.map((alert) => (
+                            <li key={alert.id} className="bookmarkedalert">
+                                {alert.img}
+                                {alert.message}
+                            </li>
+                    ))}
+                </ul>
             </header>
         </div>
     )
