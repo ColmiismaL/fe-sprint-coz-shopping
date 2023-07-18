@@ -11,6 +11,8 @@ import "./App.css"
 import { getProducts } from './api/api.js';
 import ProductContext from './context/context.js';
 
+import { v4 as uuidv4 } from 'uuid';
+
 function App() {
 
   const [productList, setproductList] = useState([]);
@@ -19,7 +21,37 @@ function App() {
     return localData ? JSON.parse(localData) : [];
   });
 
-  const [isBookmarkAlert, setIsBookmarkAlert] = useState(false);
+  const [bookmarkAlerts, setBookmarkAlerts] = useState([]);
+
+  const isBookmarked = (product) => {
+    return bookmarks.some((bookmark) => bookmark.id === product.id);
+  };
+
+  const toggleBookmark = (product) => {
+    if (isBookmarked(product)) {
+        const newBookmarks = bookmarks.filter((bookmark) => bookmark.id !== product.id);
+        setBookmarks(newBookmarks);
+        const alertId = uuidv4();
+        setBookmarkAlerts([
+            ...bookmarkAlerts,
+            { id: alertId, img: <img style={{paddingRight:'5px'}} src="/bookmarkoff.png" alt="" /> , message: '상품이 북마크에서 삭제되었습니다.' }
+        ]);
+        setTimeout(() => {
+            setBookmarkAlerts((alerts) => alerts.filter((alert) => alert.id !== alertId));
+        }, 5000);
+    } else {
+        const newBookmarks = [...bookmarks, product];
+        setBookmarks(newBookmarks);
+        const alertId = uuidv4();
+        setBookmarkAlerts([
+            ...bookmarkAlerts,
+            { id: alertId, img: <img style={{paddingRight:'5px'}} src="/Bookmarkon.png" alt="" /> , message: '상품이 북마크에서 추가되었습니다.'}
+        ]);
+        setTimeout(() => {
+            setBookmarkAlerts((alerts) => alerts.filter((alert) => alert.id !== alertId));
+        }, 3000);
+    }
+};
 
 
 
@@ -39,7 +71,7 @@ function App() {
     }, [productList])
 
   return (
-    <ProductContext.Provider value={{ productList, setproductList, bookmarks, setBookmarks, isBookmarkAlert, setIsBookmarkAlert }}>
+    <ProductContext.Provider value={{ productList, setproductList, bookmarks, setBookmarks, bookmarkAlerts, setBookmarkAlerts, toggleBookmark, isBookmarked }}>
       <Router>
         <div>
           <Routes>

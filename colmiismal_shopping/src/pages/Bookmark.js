@@ -15,7 +15,7 @@ import ProductContext from '../context/context';
 
 export default function Bookmark() {
 
-    const { bookmarks, setBookmarks, } = useContext(ProductContext);
+    const { bookmarks, setBookmarks, isBookmarked, toggleBookmark } = useContext(ProductContext);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -25,19 +25,6 @@ export default function Bookmark() {
 
     const [selectedProduct, setselectedProduct] = useState({imageUrl: null, title: null, type: null});
 
-    const isBookmarked = (product) => {
-        return bookmarks.some((bookmark) => bookmark.id === product.id);
-    };
-
-    const toggleBookmark = (product) => {
-        if (isBookmarked(product)) {
-            const newBookmarks = bookmarks.filter((bookmark) => bookmark.id !== product.id);
-            setBookmarks(newBookmarks);
-        } else {
-            const newBookmarks = [...bookmarks, product];
-            setBookmarks(newBookmarks);
-        }
-    };
 
     const filteredBookmarks = bookmarks.filter(product => {
         switch (selectedFilter) {
@@ -80,9 +67,6 @@ export default function Bookmark() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-
-
 
 
     return (

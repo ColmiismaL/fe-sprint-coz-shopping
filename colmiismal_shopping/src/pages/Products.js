@@ -13,7 +13,7 @@ import ProductContext from '../context/context';
 
 export default function Products() {
 
-    const { productList, bookmarks, setBookmarks, } = useContext(ProductContext);
+    const { productList, bookmarks, setBookmarks, isBookmarked, toggleBookmark } = useContext(ProductContext);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -22,20 +22,6 @@ export default function Products() {
     const [selectedFilter, setSelectedFilter] = useState('all');
 
     const [selectedProduct, setselectedProduct] = useState({imageUrl: null, title: null, type: null});
-
-    const isBookmarked = (product) => {
-        return bookmarks.some((bookmark) => bookmark.id === product.id);
-    };
-
-    const toggleBookmark = (product) => {
-        if (isBookmarked(product)) {
-            const newBookmarks = bookmarks.filter((bookmark) => bookmark.id !== product.id);
-            setBookmarks(newBookmarks);
-        } else {
-            const newBookmarks = [...bookmarks, product];
-            setBookmarks(newBookmarks);
-        }
-    };
 
     const filteredProducts = productList.filter(product => {
         switch (selectedFilter) {

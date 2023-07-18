@@ -9,10 +9,9 @@ import { useEffect, useState, useContext } from 'react';
 import ProductContext from '../context/context';
 
 
-
 export default function Main() {
 
-    const { productList, bookmarks, setBookmarks, isBookmarkAlert, setIsBookmarkAlert } = useContext(ProductContext);
+    const { productList, bookmarks, isBookmarked, toggleBookmark } = useContext(ProductContext);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -20,25 +19,6 @@ export default function Main() {
 
     const [firstFourProducts, setFirstFourProducts] = useState([]);
     const [firstFourBookmarks, setFirstFourBookmarks] = useState([]);
-
-    const isBookmarked = (product) => {
-        return bookmarks.some((bookmark) => bookmark.id === product.id);
-    };
-
-    const toggleBookmark = (product) => {
-        if (isBookmarked(product)) {
-            const newBookmarks = bookmarks.filter((bookmark) => bookmark.id !== product.id);
-            setBookmarks(newBookmarks);
-        } else {
-            const newBookmarks = [...bookmarks, product];
-            setBookmarks(newBookmarks);
-            setIsBookmarkAlert(true);
-
-            setTimeout(() => {
-                setIsBookmarkAlert(false);
-            }, 2000); //3ch?
-        }
-    };
 
     const handleImageClick = (product) => {
         setselectedProduct(product);
@@ -61,7 +41,7 @@ export default function Main() {
 
     return (
         <div className="mainin">
-            <Header isBookmarkAlert={isBookmarkAlert} setIsBookmarkAlert={setIsBookmarkAlert} ></Header>
+            <Header ></Header>
             <div className="maininin">
                 <div className="listmain"><span>상품 리스트</span>
                     <ul className="mainul">

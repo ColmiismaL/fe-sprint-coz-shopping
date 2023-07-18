@@ -7,7 +7,7 @@ import ProductContext from '../context/context';
 
 export default function Header( ) {
 
-    const { isBookmarkAlert } = useContext(ProductContext);
+    const { bookmarkAlerts } = useContext(ProductContext);
 
     const [dropdownVisible, setDropdownVisible ] = useState(false);
 
@@ -59,11 +59,14 @@ export default function Header( ) {
                         </div>
                     </div>
                 )}
-                {isBookmarkAlert && (
-                <div className="bookmarkedalert">
-                    북마크북마크북마크북마크북마크북마크북마크
-                </div>
-                )}
+                <ul className="alertbox">
+                    {bookmarkAlerts && Array.isArray(bookmarkAlerts) && bookmarkAlerts.map((alert) => (
+                            <li key={alert.id} className="bookmarkedalert">
+                                {alert.img}
+                                {alert.message}
+                            </li>
+                    ))}
+                </ul>
             </header>
         </div>
     )

@@ -126,20 +126,40 @@ background: none;
 }
 
 
+.alertbox {
+
+    position: fixed;
+    right: 24px;
+    bottom: 12px;
+
+}
+
+
 .bookmarkedalert {
-    position: absolute;
-    left: 50%;
-    right: 50%;
-    top: 50%;
-    bottom: 50%;
+    position: relative;
+    bottom: 12px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 88.02%;
 
-    width: 100px; 
-    height: 100px;
+    margin-bottom: 12px;
+
+    width: 291px; 
+    height: 52px;
+
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+
+    background-color: #FFFFFF;
 
     color: #000000;
 }
